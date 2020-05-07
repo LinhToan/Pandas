@@ -1,0 +1,22 @@
+'''
+This function will create 6 scatter plots for each pair of variables.
+'''
+
+def plot_flowers(data):
+
+    m = len(data['species']) # obtain number of rows in data set
+
+    spec = [] # initialize the array of species names
+
+    # fill in array of species name since we cannot assume we know how many species
+    # there are and cannot assume we know their names.
+    for i in range(m):
+        if data['species'][i][:] not in spec:
+            spec.append(data['species'][i][:])
+
+    for i in spec:
+        graph = sns.pairplot(data.loc[data['species'] == i], hue = 'species', palette = 'GnBu_d', kind = 'reg')
+        for j, k in zip(*np.triu_indices_from(graph.axes, 0)):
+            graph.axes[j, k].set_visible(False)
+            for l in graph.diag_axes:
+                l.set_visible(False)
