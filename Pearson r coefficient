@@ -1,0 +1,23 @@
+'''
+This function will copmute the Pearson r correlation coefficient for each apir of variables and each species.
+'''
+
+def coeff(data):
+    m = len(data['species']) # obtain number of rows in data set
+
+    spec = [] # initialize the array of species names
+
+        # fill in array of species name since we cannot assume we know how many species
+        # there are and cannot assume we know their names.
+    for i in range(m):
+        if data['species'][i][:] not in spec:
+            spec.append(data['species'][i][:])
+
+    col = sns.light_palette('#2ecc71', as_cmap=True)
+
+    for i in spec:
+        display(i) # print species name each time to label each table
+        pears = data.loc[data['species'] == i].corr()
+        table = display(pears.style.background_gradient(cmap=col))
+
+    return table
