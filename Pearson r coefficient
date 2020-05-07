@@ -1,5 +1,5 @@
 '''
-This function will copmute the Pearson r correlation coefficient for each apir of variables and each species.
+This function will copmute the Pearson r correlation coefficient for each pair of variables and each species.
 '''
 
 def coeff(data):
